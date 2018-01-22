@@ -1,5 +1,8 @@
 # monitoring
 
+## Update alerting rules 
+- Run `promtool update rules batch_job.rules` as mentioned here - https://github.com/prometheus/prometheus/issues/2913
+
 ## Steps to run
 ### Bring the system up 
 - `docker-compose up`
@@ -11,6 +14,7 @@
 ## URLs 
 - Prometheus - http://localhost:9090/graph & http://localhost:9090/metrics
 - Push Gateway -  http://localhost:9091/
+- Alert Manager -  http://localhost:9093/
 
 ## Backlog
 - [X] Create sample spark job

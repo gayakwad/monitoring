@@ -4,7 +4,7 @@ services:
   prometheus:
     image: "prom/prometheus"
     volumes:
-      #- ./conf/batch_job_rules.yml:/etc/prometheus/batch_job_rules.yml
+      - ./conf/batch_job_rules.yml:/etc/prometheus/batch_job_rules.yml
       - ./conf/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"

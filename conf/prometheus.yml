@@ -11,7 +11,7 @@ alerting:
       #- alertmanager:9093
 
 rule_files:
-  #- "batch_job_rules.yml"
+  - "batch_job_rules.yml"
 
 scrape_configs:
 
