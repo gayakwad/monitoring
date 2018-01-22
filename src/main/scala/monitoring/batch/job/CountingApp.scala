@@ -20,9 +20,12 @@ object CountingLocalApp extends App {
   val duration: Gauge = Gauge.build.name("my_batch_job_duration_seconds").help("Duration of my batch job in seconds.").register(registry)
   val durationTimer = duration.startTimer
   try {
+
     Runner.run(conf, inputFile, outputFile)
+
     val lastSuccess: Gauge = Gauge.build.name("my_batch_job_last_success_unixtime").help("Last time my batch job succeeded, in unixtime.").register(registry)
     lastSuccess.setToCurrentTime()
+
   } finally {
     durationTimer.setDuration()
     val pg = new PushGateway("127.0.0.1:9091")
@@ -43,6 +46,7 @@ object CountingApp extends App {
 
 object Runner {
   def run(conf: SparkConf, inputFile: String, outputFile: String): Unit = {
+    conf.set("spark.hadoop.validateOutputSpecs", "false")
     val sc = new SparkContext(conf)
     val rdd = sc.textFile(inputFile)
     val counts = WordCount.withStopWordsFiltered(rdd)

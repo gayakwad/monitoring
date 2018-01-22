@@ -22,5 +22,5 @@ services:
     ports:
       - "9093:9093"
     volumes:
-      - "/tmp/prom:/tmp/prom"
-      - ./conf/alertmanager.conf:/alertmanager/alertmanager.conf
+      - ./conf/alertmanager.yml:/etc/alertmanager/config.yml
+      - ./conf/slack_alert.tmpl:/etc/alertmanager/templates/slack_alert.tmpl

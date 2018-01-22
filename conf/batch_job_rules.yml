@@ -2,9 +2,8 @@ groups:
 - name: batch_job_rules.yml
   rules:
   - alert: MyBatchJobNotCompleted
-    expr: min(time() - my_batch_job_last_success_unixtime{job="my_batch_job"}) > 60
-      * 60
-    for: 5m
+    expr: my_batch_job_duration_seconds > 2
+    for: 1m
     labels:
       severity: page
     annotations:
