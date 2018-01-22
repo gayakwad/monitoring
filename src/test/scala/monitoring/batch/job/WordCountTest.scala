@@ -1,4 +1,4 @@
-package monitoring.spark.job
+package monitoring.batch.job
 
 /**
  * A simple test for everyone's favourite wordcount example.

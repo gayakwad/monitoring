@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  prometheus:
+    image: "prom/prometheus"
+    volumes:
+      #- ./conf/batch_job_rules.yml:/etc/prometheus/batch_job_rules.yml
+      - ./conf/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    links:
+      - push-gateway:push-gateway
+      - alertmanager:alertmanager
+
+  push-gateway:
+    image: "prom/pushgateway"
+    ports:
+      - "9091:9091"
+
+  alertmanager:
+    image: "prom/alertmanager"
+    ports:
+      - "9093:9093"
+    volumes:
+      - "/tmp/prom:/tmp/prom"
+      - ./conf/alertmanager.conf:/alertmanager/alertmanager.conf
