@@ -4,12 +4,12 @@
 - Run `promtool update rules batch_job.rules` as mentioned here - https://github.com/prometheus/prometheus/issues/2913
 
 ## Steps to run
-### Bring the system up 
+### Bring up the system 
 - `docker-compose up`
 ### Create fat jar 
 - `sbt clean assembly` 
 ### Run spark batch job
-- e.g. `spark-submit --class=monitoring.batch.job.CountingLocalApp target/scala-2.11/monitoring-assembly-0.0.1.jar sample-data/inputFile.txt sample-data/outputDir`
+- `spark-submit --class=monitoring.batch.job.CountingLocalApp target/scala-2.11/monitoring-assembly-0.0.1.jar sample-data/inputFile.txt sample-data/outputDir`
 
 ## URLs 
 - Prometheus - http://localhost:9090/graph & http://localhost:9090/metrics
@@ -21,4 +21,4 @@
 - [ ] Schedule spark job using Azkaban
 - [X] Post metrics from spark job
 - [ ] Create Grafana dashboards to visualize metrics
-- [ ] Alert on slack channel
+- [X] Alert on slack channel

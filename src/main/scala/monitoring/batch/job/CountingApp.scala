@@ -14,22 +14,22 @@ object CountingLocalApp extends App {
   val (inputFile, outputFile) = (args(0), args(1))
   val conf = new SparkConf()
     .setMaster("local")
-    .setAppName("my awesome app")
+    .setAppName("word count app")
 
   val registry: CollectorRegistry = new CollectorRegistry
-  val duration: Gauge = Gauge.build.name("my_batch_job_duration_seconds").help("Duration of my batch job in seconds.").register(registry)
+  val duration: Gauge = Gauge.build.name("wc_batch_job_duration_seconds").help("Duration of wc batch job in seconds.").register(registry)
   val durationTimer = duration.startTimer
   try {
 
     Runner.run(conf, inputFile, outputFile)
 
-    val lastSuccess: Gauge = Gauge.build.name("my_batch_job_last_success_unixtime").help("Last time my batch job succeeded, in unixtime.").register(registry)
+    val lastSuccess: Gauge = Gauge.build.name("wc_batch_job_last_success_unixtime").help("Last time wc batch job succeeded, in unixtime.").register(registry)
     lastSuccess.setToCurrentTime()
 
   } finally {
     durationTimer.setDuration()
     val pg = new PushGateway("127.0.0.1:9091")
-    pg.pushAdd(registry, "my_batch_job")
+    pg.pushAdd(registry, "wc_batch_job")
   }
 
 }
