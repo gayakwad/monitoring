@@ -18,7 +18,8 @@
 
 ## Backlog
 - [X] Create sample spark job
-- [ ] Schedule spark job using Azkaban
 - [X] Post metrics from spark job
-- [ ] Create Grafana dashboards to visualize metrics
 - [X] Alert on slack channel
+- [ ] Add history and summary in alert test 
+- [ ] Schedule spark job using Azkaban
+- [ ] Create Grafana dashboards to visualize metrics
