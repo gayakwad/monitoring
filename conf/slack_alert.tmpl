@@ -1,1 +1,1 @@
-{{ define "slack.alert.text" }} Batch job took longer time than expected {{ .GroupLabels.app }} {{ .GroupLabels.alertname }}{{ end}}
+{{ define "slack.alert.text" }} [{{ .GroupLabels.alertname }}] {{ .CommonAnnotations.description}} - {{ .CommonAnnotations.summary}} {{ end}}
